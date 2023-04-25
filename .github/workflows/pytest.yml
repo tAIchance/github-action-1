@@ -1,0 +1,28 @@
+name: pytest
+on:
+  push:
+    branches:
+      - master
+  workflow_dispatch:
+  pull_request:
+    types: [opened]
+  
+jobs:
+
+  pytest:
+    runs-on: ubuntu-latest
+    steps:
+      - name: print github action context
+        run: |
+          echo ${{ github.repositoryUrl }}
+          pwd
+      - name: checkout code
+        uses: actions/checkout@v3
+      - name: install pytest
+        run: |
+          pip install pytest
+          pwd
+      - name: run pytest
+        run: |
+          pytest
+          pwd
